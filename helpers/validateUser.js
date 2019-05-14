@@ -1,6 +1,8 @@
-const { check, validationResult } = require('express-validator/check');
+const { check } = require('express-validator/check');
 
-check('userName').not().isEmpty().trim(),
-check('password').not().isEmpty().trim().isLength({ min: 5, max: 20 });
+const validateUser = [
+  check('userName').not().isEmpty().trim().isLength({ min: 4, max: 35 }).escape(),
+  check('password').not().isEmpty().trim().isLength({ min: 8, max: 20 }).escape()
+]
 
 module.exports = validateUser;

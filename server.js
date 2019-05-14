@@ -4,12 +4,14 @@ const app = express();
 const morgan = require("morgan");
 const port = 5000;
 
+const connectToDB = require("./helpers/connectDB");
 const userRouter = require("./routes/userRouter");
-const errorHandler = require("./helpers/errors");
+const errorHandler = require("./helpers/error");
 
+connectToDB();
 
 app.use(express.json());
-// second step
+
 app.use(express.urlencoded({extended: false}));
 app.use(errorHandler);
 app.use(morgan("dev"));
